@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="CADHELP.ie — Civil 3D and CAD support for Irish construction, engineering and surveying teams." />
+  <title>CADHELP.ie — CAD & Civil 3D Support for Ireland</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+<header class="site-header">
+  <div class="shell header-inner">
+    <a class="brand" href="#top" aria-label="CADHELP.ie home">
+      <span class="brand-main">CADHELP<span>.ie</span></span>
+      <span class="brand-sub">CAD & Civil 3D Support for Ireland</span>
+    </a>
+    <button class="menu-btn" id="menuBtn" aria-label="Open menu">☰</button>
+    <nav class="nav" id="nav">
+      <a href="#top">Home</a><a href="#services">Services</a><a href="#how">How It Works</a><a href="#about">About</a><a href="#contact">Contact</a>
+    </nav>
+    <div class="header-actions">
+      <a class="wa-link" href="https://wa.me/353838359614" target="_blank" rel="noopener">● WhatsApp Us</a>
+      <a class="btn btn-dark" href="#upload">Upload a Job →</a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-contours"></div>
+    <div class="shell hero-grid">
+      <div class="hero-copy">
+        <div class="kicker">FOR IRISH CONSTRUCTION, ENGINEERING & SURVEYING TEAMS</div>
+        <h1>Your extra pair of<br>hands for <span>Civil 3D.</span></h1>
+        <h2>Drop your files. Tell us what you need. Get it sorted.</h2>
+        <p>Fast, secure CAD & Civil 3D support for Irish contractors, consultants and engineers. Human expertise. Real results.</p>
+        <div class="hero-benefits">
+          <div><b>⚡</b><span>Fast<br>turnaround</span></div>
+          <div><b>⬟</b><span>Secure &<br>confidential</span></div>
+          <div><b>👥</b><span>Experienced<br>Civil 3D engineers</span></div>
+          <div><b>☘</b><span>Built for the<br>Irish market</span></div>
+        </div>
+      </div>
+
+      <div class="upload-card" id="upload">
+        <div class="drop-zone" id="dropZone">
+          <input id="fileInput" type="file" multiple hidden>
+          <div class="upload-icon">⇧</div>
+          <strong>Drop your files here</strong>
+          <span>DWG · DXF · PDF · ZIP · LandXML · CSV</span>
+          <span>Images · Survey Data · Point Files</span>
+          <button class="browse-btn" id="browseBtn" type="button">Browse Files</button>
+          <small>✓ Large projects welcome — up to 5 GB per job</small>
+        </div>
+        <label class="field-label" for="requestText">Tell us what you need...</label>
+        <textarea id="requestText" placeholder="e.g. Update the formation model using the latest survey and give me cut/fill quantities by plot..."></textarea>
+        <div class="upload-tools">
+          <button type="button">📎 Add file</button>
+          <button type="button">🎙 Record</button>
+          <button type="button" class="send-btn">➤</button>
+        </div>
+        <div class="privacy">🔒 Your files are private and never shared.</div>
+      </div>
+    </div>
+    <div class="hero-note">From survey<br>to final drawing<br>— we’ve got you.</div>
+  </section>
+
+  <section class="services shell" id="services">
+    <div class="section-kicker">— OUR SERVICES</div>
+    <h2>Civil 3D & CAD support for real projects.</h2>
+    <p class="section-lead">From models and quantities to as-builts and Uisce Éireann submissions — we help you get the job done.</p>
+
+    <div class="service-grid">
+      <article class="service-card"><img src="assets/earthworks.webp" alt="Earthworks and quantities"><div class="card-copy"><h3>Earthworks & Quantities</h3><p>Cut/fill, formation models, topsoil strip, plot quantities, comparison surfaces and volume checks.</p><a href="#contact">→</a></div></article>
+      <article class="service-card"><img src="assets/civil3d.webp" alt="Civil 3D model"><div class="card-copy"><h3>Civil 3D</h3><p>Surfaces, feature lines, corridors, pipe networks, sections, profiles and model clean-up.</p><a href="#contact">→</a></div></article>
+      <article class="service-card"><img src="assets/drainage.webp" alt="Drainage utilities"><div class="card-copy"><h3>Drainage & Utilities</h3><p>Pipe networks, long sections, manholes, gradients, foul, storm and watermain drawing updates.</p><a href="#contact">→</a></div></article>
+      <article class="service-card"><img src="assets/uisce.webp" alt="Uisce Eireann support"><div class="card-copy"><h3>Uisce Éireann Support</h3><p>CAD production and as-built drawing support for Irish water and wastewater projects.</p><a href="#contact">→</a></div></article>
+      <article class="service-card wide"><img src="assets/asbuilt.webp" alt="As-built and redline drawing"><div class="card-copy"><h3>As-Builts & Redlines</h3><p>Turn engineer surveys, GPS information and marked-up drawings into clean DWG/PDF outputs.</p><a href="#contact">→</a></div></article>
+      <article class="service-card wide"><img src="assets/surveys.webp" alt="Survey and drone"><div class="card-copy"><h3>Surfaces & Surveys</h3><p>Survey clean-up, surfaces, point files, drone comparisons and design-vs-existing checks.</p><a href="#contact">→</a></div></article>
+      <article class="service-card wide"><img src="assets/roads.webp" alt="Roads and profiles"><div class="card-copy"><h3>Roads & Profiles</h3><p>Alignments, profiles, feature lines, corridors, sections, levels and targeted drawing edits.</p><a href="#contact">→</a></div></article>
+    </div>
+
+    <div class="files-strip"><b>▤ &nbsp; Typical files we work with</b><span>DWG · DXF · PDF · ZIP · LandXML · CSV · Point Files · Drone Surveys · GPS Surveys · Redlines · Images</span><small>Not sure? Just upload and we’ll take a look.</small></div>
+  </section>
+
+  <section class="trust" id="about">
+    <div class="trust-shade"></div>
+    <div class="shell trust-inner">
+      <div class="trust-copy"><div class="section-kicker light">— SAVE TIME. DELIVER MORE.</div><h2>Trusted by contractors,<br>consultants and engineers<br>across Ireland.</h2></div>
+      <div class="trust-points"><div><i>◉</i><b>Civil 3D</b><span>Focused</span></div><div><i>⬟</i><b>Secure &</b><span>Confidential</span></div><div><i>⚡</i><b>Fast</b><span>Turnaround</span></div><div><i>☘</i><b>Ireland</b><span>Based Support</span></div></div>
+    </div>
+  </section>
+
+  <section class="how shell" id="how">
+    <div class="section-kicker">— HOW IT WORKS</div>
+    <h2>Simple process. No hassle.</h2>
+    <div class="steps">
+      <div class="step"><span class="number">1</span><div class="round">⇧</div><b>Upload your files</b><p>Drop your drawings, PDFs, survey data or screenshots.</p></div><div class="arrow">→</div>
+      <div class="step"><span class="number">2</span><div class="round">◯</div><b>Tell us what you need</b><p>Type, voice or add a marked-up image.</p></div><div class="arrow">→</div>
+      <div class="step"><span class="number">3</span><div class="round">▤</div><b>Get a free quote</b><p>We review the files and come back with scope, turnaround and price.</p></div><div class="arrow">→</div>
+      <div class="step"><span class="number">4</span><div class="round">✓</div><b>Approve and we get to work</b><p>You decide before any work starts.</p></div>
+    </div>
+  </section>
+
+  <section class="cta" id="contact">
+    <div class="cta-shade"></div>
+    <div class="shell cta-inner"><div><h2>Ready to get started?</h2><p>Upload your files now or send us a message on WhatsApp.<br>First quote is free.</p></div><div class="cta-actions"><a class="btn btn-green" href="#upload">⇧ &nbsp; Upload a Job →</a><a class="btn btn-outline" href="https://wa.me/353838359614" target="_blank" rel="noopener">● &nbsp; WhatsApp Us</a></div><div class="cta-note">Questions?<br>We’re just a message away. ↙</div></div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="shell footer-inner"><a class="brand" href="#top"><span class="brand-main">CADHELP<span>.ie</span></span><span class="brand-sub">CAD & Civil 3D Support for Ireland</span></a><nav><a href="#top">Home</a><a href="#services">Services</a><a href="#how">How It Works</a><a href="#about">About</a><a href="#contact">Contact</a></nav><div class="copyright">© 2026 CADHELP.ie. All rights reserved. &nbsp; 🇮🇪 Built for Ireland</div></div>
+</footer>
+<a class="floating-wa" href="https://wa.me/353838359614" target="_blank" rel="noopener" aria-label="WhatsApp">●</a>
+<script src="js/main.js"></script>
+</body>
+</html>

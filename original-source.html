@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>CADHELP.ie — CAD & Civil 3D Support Ireland</title>
+<style>
+:root{
+  --bg:#07111d;--panel:#0d1b2a;--panel2:#102338;--text:#eef6ff;
+  --muted:#9db1c5;--accent:#39d98a;--blue:#45a3ff;--line:#1d3852;
+}
+*{box-sizing:border-box} html{scroll-behavior:smooth}
+body{margin:0;font-family:Inter,Arial,sans-serif;background:linear-gradient(180deg,#06101b 0%,#091725 100%);color:var(--text)}
+a{color:inherit;text-decoration:none}.wrap{max-width:1120px;margin:auto;padding:0 24px}
+.nav{height:72px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,.06)}
+.logo{font-size:21px;font-weight:900;letter-spacing:-.6px}.logo span{color:var(--accent)}
+.navlinks{display:flex;gap:24px;color:var(--muted);font-size:14px}
+.btn{display:inline-flex;align-items:center;justify-content:center;border-radius:10px;padding:13px 18px;font-weight:800;border:1px solid var(--line);background:#102338;cursor:pointer}
+.btn.primary{background:var(--accent);color:#032416;border:none}.btn.whatsapp{border-color:#1f8b61}
+.heroBand{position:relative;background-image:linear-gradient(180deg,rgba(5,13,22,.62) 0%,rgba(5,13,22,.72) 55%,rgba(6,16,27,.92) 100%),url('https://images.unsplash.com/photo-1722827908823-823af0bd191f?fm=jpg&q=80&w=2400&auto=format&fit=crop');background-size:cover;background-position:center 40%;border-bottom:1px solid rgba(255,255,255,.08);overflow:hidden}
+.heroBand::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.5;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 900 500'><g fill='none' stroke='%2339d98a' stroke-width='1.6'><path d='M-20 420 C120 360,180 460,300 400 S480 320,650 380 S820 300,940 340'/><path d='M-30 380 C110 330,190 420,310 360 S470 280,660 340 S830 260,950 300' opacity='.7'/><path d='M-30 340 C120 300,200 370,320 320 S460 250,670 300 S840 230,960 260' opacity='.45'/></g></svg>");background-repeat:no-repeat;background-position:left bottom;background-size:70% auto}
+.hero{position:relative;z-index:1;display:grid;grid-template-columns:1.02fr .98fr;gap:48px;align-items:center;padding:78px 0 62px}
+.eyebrow{display:inline-block;color:var(--accent);font-weight:800;font-size:13px;letter-spacing:.09em;text-transform:uppercase;margin-bottom:18px}
+h1{font-size:58px;line-height:1.02;letter-spacing:-2.4px;margin:0 0 20px;max-width:720px}.lead{font-size:19px;line-height:1.6;color:var(--muted);max-width:680px}
+.actions{display:flex;gap:12px;margin-top:28px;flex-wrap:wrap}.proof{display:flex;gap:20px;margin-top:24px;color:#c7d6e4;font-size:14px;flex-wrap:wrap}.proof b{color:white}
+.upload{background:linear-gradient(180deg,#0f2133,#0a1928);border:1px solid #23435f;border-radius:20px;padding:22px;box-shadow:0 28px 80px rgba(0,0,0,.3)}
+.drop{border:1.5px dashed #3d688a;border-radius:16px;padding:31px;text-align:center;background:rgba(255,255,255,.018)}.drop .icon{font-size:42px;margin-bottom:10px}.drop h3{margin:0 0 7px}.drop p{margin:0;color:var(--muted);font-size:14px}.formats{margin-top:10px;color:#7897b0;font-size:12px;line-height:1.5}
+.request{margin-top:14px;background:#0b1826;border:1px solid var(--line);border-radius:14px;padding:14px}.request textarea{width:100%;min-height:108px;background:transparent;border:0;resize:none;color:#eaf5ff;font:inherit;outline:none}.requestbar{display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--line);padding-top:12px;gap:10px}.tools{display:flex;gap:8px;flex-wrap:wrap}.pill{font-size:12px;padding:7px 9px;border:1px solid var(--line);border-radius:8px;color:#b9cad9}.send{background:var(--accent);color:#032416;border:0;border-radius:8px;padding:10px 14px;font-weight:900}.freequote{margin-top:13px;text-align:center;color:#bcd0df;font-size:13px}.freequote strong{color:#fff}
+.section{padding:68px 0}.section h2{font-size:36px;letter-spacing:-1.2px;margin:0 0 12px}.sectionintro{color:var(--muted);font-size:17px;max-width:760px;line-height:1.6}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:28px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.cardBody{padding:20px 22px 22px}.card h3{font-size:19px;margin:0 0 8px}.card p{color:var(--muted);line-height:1.55;margin:0}.tag{display:inline-block;font-size:12px;margin-top:13px;padding:6px 9px;border-radius:7px;background:#10283a;color:#a9d3f8}
+.serviceVisual{height:155px;position:relative;overflow:hidden;background:#091522;border-bottom:1px solid var(--line)}
+.serviceVisual img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.serviceVisual::before{content:"";position:absolute;inset:0;background:rgba(7,16,27,.6);z-index:1}
+.serviceVisual svg{position:relative;z-index:2;width:100%;height:100%;display:block}.serviceVisual::after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;background:linear-gradient(180deg,transparent 45%,rgba(6,16,27,.55))}
+.band{background:#0d1b2a;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.simple{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}.checks{display:grid;gap:12px;margin-top:22px}.check{display:flex;gap:12px;align-items:flex-start;color:#c8d8e6}.check i{color:var(--accent);font-style:normal;font-weight:900}
+.quoteBox{background:#091625;border:1px solid var(--line);padding:26px;border-radius:18px}.quoteBox .price{font-size:34px;font-weight:900;margin:10px 0 8px}.quoteBox p{color:var(--muted);line-height:1.55}.quoteBox .btn{width:100%;margin-top:10px}
+.cta{text-align:center;padding:72px 24px}.cta h2{font-size:42px;margin-bottom:10px}.cta p{color:var(--muted);font-size:18px}.footer{border-top:1px solid var(--line);padding:28px 0 38px;color:#7590a8;font-size:13px;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.whatsappFloat{position:fixed;right:22px;bottom:22px;width:58px;height:58px;border-radius:50%;background:#25D366;color:#062716;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:900;box-shadow:0 10px 30px rgba(0,0,0,.35);z-index:10}
+@media(max-width:850px){.hero,.simple{grid-template-columns:1fr}.grid{grid-template-columns:1fr}.navlinks{display:none}h1{font-size:43px}.hero{padding-top:52px}.section h2{font-size:31px}.requestbar{align-items:flex-end}.whatsappFloat{right:16px;bottom:16px}.heroBand{background-position:center 30%}}
+</style>
+</head>
+<body>
+<header class="wrap nav">
+  <div class="logo">CADHELP<span>.ie</span></div>
+  <nav class="navlinks"><a href="#services">Services</a><a href="#how">How it works</a><a href="#quote">Free quote</a></nav>
+  <a href="#upload" class="btn primary">Upload a job</a>
+</header>
+
+<main>
+<section class="heroBand">
+<div class="wrap hero">
+  <div>
+    <div class="eyebrow">CAD & Civil 3D support for Ireland</div>
+    <h1>Your extra pair of hands for Civil 3D.</h1>
+    <p class="lead">Drop your files, tell us what you need, and get a free quote. Fast, secure CAD & Civil 3D support for Irish contractors, consultants and engineers — AI-assisted, human checked.</p>
+    <div class="actions">
+      <a class="btn primary" href="#upload">Get a free quote</a>
+      <a class="btn whatsapp" href="https://wa.me/353838359614" target="_blank" rel="noopener">WhatsApp us</a>
+    </div>
+    <div class="proof"><span><b>Free first quote</b></span><span><b>Large files welcome</b></span><span><b>Human reviewed</b></span></div>
+  </div>
+
+  <div class="upload" id="upload">
+    <div class="drop">
+      <div class="icon">⇧</div>
+      <h3>Drop your project files here</h3>
+      <p>or click to browse</p>
+      <div class="formats">DWG • DXF • PDF • ZIP • CSV • LandXML • survey data • screenshots</div>
+      <div class="formats">Large project packages supported, including 300 MB+ uploads.</div>
+    </div>
+    <div class="request">
+      <textarea placeholder="Tell us what you need... e.g. Update the formation model using the latest survey and give me cut/fill quantities by plot."></textarea>
+      <div class="requestbar">
+        <div class="tools"><span class="pill">🎙 Voice note</span><span class="pill">📎 Screenshot</span></div>
+        <button class="send">Request quote →</button>
+      </div>
+    </div>
+    <div class="freequote"><strong>No charge to review the job and quote.</strong> You decide before any work starts.</div>
+  </div>
+</div>
+</section>
+
+<section class="wrap section" id="services">
+  <div class="eyebrow">Services</div>
+  <h2>Civil 3D & CAD support for real projects.</h2>
+  <p class="sectionintro">From earthworks and drainage to surveys, roads and Uisce Éireann drawings — send the project and tell us what you need.</p>
+  <div class="grid">
+
+    <article class="card">
+      <div class="serviceVisual" aria-hidden="true">
+        <img src="https://images.unsplash.com/photo-1686968719603-61b698e28e7b?fm=jpg&q=70&w=900&auto=format&fit=crop" alt="" loading="lazy" />
+        <svg viewBox="0 0 500 220" xmlns="http://www.w3.org/2000/svg">
+          <g fill="none" stroke="#39d98a" stroke-width="2" opacity=".9">
+            <path d="M-20 182 C72 132,127 205,214 149 S355 107,527 139"/><path d="M-10 162 C86 118,134 181,218 132 S355 88,520 121" opacity=".7"/><path d="M-5 141 C72 108,156 160,225 116 S370 65,516 100" opacity=".45"/>
+          </g>
+          <path d="M48 181 L127 92 L206 153 L284 57 L388 128 L462 77" fill="none" stroke="#45a3ff" stroke-width="4"/>
+          <path d="M48 181 L127 92 L206 153 L284 57 L388 128 L462 77 L462 204 L48 204Z" fill="#45a3ff" opacity=".12"/>
+          <g fill="#eef6ff" font-family="Arial" font-size="13"><text x="22" y="28">CUT / FILL SURFACE</text><text x="396" y="203">m³</text></g>
+        </svg>
+      </div>
+      <div class="cardBody"><h3>Earthworks & quantities</h3><p>Cut/fill, formation models, topsoil strip, plot quantities, comparison surfaces and volume checks.</p><span class="tag">Civil 3D</span></div>
+    </article>
+
+    <article class="card">
+      <div class="serviceVisual" aria-hidden="true">
+        <img src="https://images.unsplash.com/photo-1781888688940-5730c3fd5baf?fm=jpg&q=70&w=900&auto=format&fit=crop" alt="" loading="lazy" />
+        <svg viewBox="0 0 500 220" xmlns="http://www.w3.org/2000/svg">
+          <g stroke="#45a3ff" stroke-width="3" fill="none"><path d="M35 152 L116 92 L184 114 L258 55 L345 85 L455 47"/><path d="M35 166 L116 106 L184 128 L258 69 L345 99 L455 61" opacity=".55"/></g>
+          <g stroke="#39d98a" stroke-width="2" opacity=".75"><line x1="65" y1="28" x2="65" y2="192"/><line x1="152" y1="28" x2="152" y2="192"/><line x1="239" y1="28" x2="239" y2="192"/><line x1="326" y1="28" x2="326" y2="192"/><line x1="413" y1="28" x2="413" y2="192"/></g>
+          <g fill="#eef6ff" font-family="Arial" font-size="13"><text x="22" y="28">CIVIL 3D MODEL</text><text x="364" y="204">Surface / Feature Lines</text></g>
+        </svg>
+      </div>
+      <div class="cardBody"><h3>Civil 3D modelling</h3><p>Surfaces, feature lines, corridors, profiles, sections, pipe networks and targeted model clean-up.</p><span class="tag">Civil 3D</span></div>
+    </article>
+
+    <article class="card">
+      <div class="serviceVisual" aria-hidden="true">
+        <img src="https://images.unsplash.com/photo-1645070029556-809b2517151e?fm=jpg&q=70&w=900&auto=format&fit=crop" alt="" loading="lazy" />
+        <svg viewBox="0 0 500 220" xmlns="http://www.w3.org/2000/svg">
+          <g stroke="#45a3ff" stroke-width="7" fill="none" stroke-linecap="round"><path d="M42 168 L133 118 L222 147 L314 82 L454 112"/></g>
+          <g fill="#0d1b2a" stroke="#39d98a" stroke-width="4"><circle cx="42" cy="168" r="14"/><circle cx="133" cy="118" r="14"/><circle cx="222" cy="147" r="14"/><circle cx="314" cy="82" r="14"/><circle cx="454" cy="112" r="14"/></g>
+          <g stroke="#39d98a" stroke-width="2" opacity=".65"><line x1="133" y1="118" x2="133" y2="40"/><line x1="314" y1="82" x2="314" y2="40"/></g>
+          <g fill="#eef6ff" font-family="Arial" font-size="13"><text x="22" y="28">DRAINAGE NETWORK</text><text x="324" y="204">MH • IL • Gradient</text></g>
+        </svg>
+      </div>
+      <div class="cardBody"><h3>Drainage & utilities</h3><p>Pipe networks, long sections, manholes, gradients, foul, storm and watermain drawing updates.</p><span class="tag">Utilities</span></div>
+    </article>
+
+    <article class="card">
+      <div class="serviceVisual" aria-hidden="true">
+        <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?fm=jpg&q=70&w=900&auto=format&fit=crop" alt="" loading="lazy" />
+        <svg viewBox="0 0 500 220" xmlns="http://www.w3.org/2000/svg">
+          <g stroke="#7897b0" stroke-width="1.5" fill="none" opacity=".75"><rect x="48" y="42" width="405" height="135"/><path d="M72 150 L132 93 L186 128 L241 80 L309 128 L378 68 L428 98"/><path d="M70 58 H428 M70 88 H428 M70 118 H428 M70 148 H428" opacity=".28"/></g>
+          <g stroke="#39d98a" stroke-width="4" fill="none"><path d="M76 153 L136 100 L191 133 L246 86"/><polyline points="236,84 246,86 244,96"/></g>
+          <g fill="#eef6ff" font-family="Arial" font-size="13"><text x="22" y="28">REDLINE → AS-BUILT</text><text x="330" y="204">DWG / PDF</text></g>
+        </svg>
+      </div>
+      <div class="cardBody"><h3>As-builts & redlines</h3><p>Turn engineer surveys, GPS information and marked-up drawings into clean DWG/PDF outputs.</p><span class="tag">As-built</span></div>
+    </article>
+
+    <article class="card">
+      <div class="serviceVisual" aria-hidden="true">
+        <img src="https://images.unsplash.com/photo-1620926530886-1deabbcbe24d?fm=jpg&q=70&w=900&auto=format&fit=crop" alt="" loading="lazy" />
+        <svg viewBox="0 0 500 220" xmlns="http://www.w3.org/2000/svg">
+          <g fill="none" stroke="#39d98a" stroke-width="1.8" opacity=".8"><ellipse cx="250" cy="112" rx="205" ry="78"/><ellipse cx="250" cy="112" rx="160" ry="60"/><ellipse cx="250" cy="112" rx="115" ry="42"/><ellipse cx="250" cy="112" rx="70" ry="25"/></g>
+          <g fill="#45a3ff"><circle cx="95" cy="77" r="4"/><circle cx="168" cy="132" r="4"/><circle cx="254" cy="84" r="4"/><circle cx="350" cy="145" r="4"/><circle cx="407" cy="99" r="4"/></g>
+          <g fill="#eef6ff" font-family="Arial" font-size="13"><text x="22" y="28">SURVEY / SURFACE</text><text x="342" y="204">Points + contours</text></g>
+        </svg>
+      </div>
+      <div class="cardBody"><h3>Surfaces & surveys</h3><p>Survey clean-up, surfaces, point files, drone comparisons and design-vs-existing checks.</p><span class="tag">Survey</span></div>
+    </article>
+
+    <article class="card">
+      <div class="serviceVisual" aria-hidden="true">
+        <img src="https://images.unsplash.com/photo-1487214626629-b7eaa70441b2?fm=jpg&q=70&w=900&auto=format&fit=crop" alt="" loading="lazy" />
+        <svg viewBox="0 0 500 220" xmlns="http://www.w3.org/2000/svg">
+          <path d="M24 171 C108 142,143 89,222 103 S331 164,475 72" fill="none" stroke="#45a3ff" stroke-width="12" opacity=".22"/>
+          <path d="M24 171 C108 142,143 89,222 103 S331 164,475 72" fill="none" stroke="#45a3ff" stroke-width="3"/>
+          <g stroke="#39d98a" stroke-width="2"><line x1="55" y1="160" x2="48" y2="145"/><line x1="159" y1="102" x2="152" y2="86"/><line x1="270" y1="121" x2="276" y2="105"/><line x1="389" y1="116" x2="397" y2="99"/></g>
+          <g fill="#eef6ff" font-family="Arial" font-size="13"><text x="22" y="28">ROAD / PROFILE</text><text x="329" y="204">Alignment + levels</text></g>
+        </svg>
+      </div>
+      <div class="cardBody"><h3>Roads & profiles</h3><p>Alignments, profiles, feature lines, corridors, sections, levels and targeted drawing edits.</p><span class="tag">Roads</span></div>
+    </article>
+
+    <article class="card">
+      <div class="serviceVisual" aria-hidden="true">
+        <img src="https://images.unsplash.com/photo-1674578745937-c73f81bdda07?fm=jpg&q=70&w=900&auto=format&fit=crop" alt="" loading="lazy" />
+        <svg viewBox="0 0 500 220" xmlns="http://www.w3.org/2000/svg">
+          <g fill="none" stroke="#45a3ff" stroke-width="5"><path d="M80 158 L141 114 L208 141 L274 97 L343 122 L421 83"/></g>
+          <g stroke="#39d98a" fill="#0d1b2a" stroke-width="3"><circle cx="141" cy="114" r="11"/><circle cx="274" cy="97" r="11"/><circle cx="421" cy="83" r="11"/></g>
+          <path d="M76 55 C101 32,125 35,135 55 C145 75,124 92,106 92 C89 92,62 75,76 55Z" fill="#39d98a" opacity=".8"/>
+          <g fill="#eef6ff" font-family="Arial" font-size="13"><text x="22" y="28">UISCE ÉIREANN SUPPORT</text><text x="323" y="204">Water / Wastewater</text></g>
+        </svg>
+      </div>
+      <div class="cardBody"><h3>Uisce Éireann support</h3><p>CAD production and as-built drawing support for Irish water and wastewater projects.</p><span class="tag">Ireland</span></div>
+    </article>
+
+  </div>
+</section>
+
+<section class="band" id="how">
+  <div class="wrap section">
+    <h2>Three simple steps.</h2>
+    <p class="sectionintro">No long forms and no complicated briefing process.</p>
+    <div class="grid">
+      <div class="card"><div class="cardBody"><span class="tag">01</span><h3>Upload your files</h3><p>Send the DWGs, PDFs, surveys, screenshots or a ZIP of the full project.</p></div></div>
+      <div class="card"><div class="cardBody"><span class="tag">02</span><h3>Tell us what you need</h3><p>Type it, record a voice note or send a marked-up screenshot.</p></div></div>
+      <div class="card"><div class="cardBody"><span class="tag">03</span><h3>Get a free quote</h3><p>We review the request, confirm scope and price, and only start once you approve it.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="quote">
+  <div class="wrap section simple">
+    <div>
+      <div class="eyebrow">Simple pricing</div>
+      <h2>First quote is free.</h2>
+      <p class="sectionintro">Every CAD job is different, so you do not need to choose a package or subscription. Send the files, explain the task and we will review it first.</p>
+      <div class="checks">
+        <div class="check"><i>✓</i><span>No charge to review your request.</span></div>
+        <div class="check"><i>✓</i><span>Clear scope and price before work starts.</span></div>
+        <div class="check"><i>✓</i><span>Urgent and same-day work can be quoted where available.</span></div>
+        <div class="check"><i>✓</i><span>Ongoing support available for regular clients.</span></div>
+      </div>
+    </div>
+    <div class="quoteBox">
+      <div class="eyebrow">Start here</div>
+      <div class="price">€0 to quote</div>
+      <p>Upload your project and tell us what needs doing. We review the files and come back with scope, turnaround and price.</p>
+      <a class="btn primary" href="#upload">Upload for a free quote</a>
+      <a class="btn whatsapp" href="https://wa.me/353838359614" target="_blank" rel="noopener">Ask on WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<section class="wrap section simple">
+  <div>
+    <div class="eyebrow">AI + engineer review</div>
+    <h2>AI makes us faster. People check the work.</h2>
+    <p class="sectionintro">AI and automation help organise files, understand requests, process repetitive tasks and speed up production. A Civil 3D professional reviews the deliverable before it comes back to you.</p>
+  </div>
+  <div class="checks">
+    <div class="check"><i>✓</i><span>Human technical check before delivery.</span></div>
+    <div class="check"><i>✓</i><span>Secure project file handling.</span></div>
+    <div class="check"><i>✓</i><span>Built around Irish civil engineering workflows.</span></div>
+    <div class="check"><i>✓</i><span>Clear output and change summary.</span></div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="wrap">
+    <h2>Got a CAD job?</h2>
+    <p>Send the files and get a free quote before any work starts.</p>
+    <div class="actions" style="justify-content:center"><a href="#upload" class="btn primary">Get a free quote</a><a class="btn whatsapp" href="https://wa.me/353838359614" target="_blank" rel="noopener">WhatsApp us</a></div>
+  </div>
+</section>
+</main>
+
+<div class="wrap footer"><span>© CADHELP.ie</span><span>CAD support • Civil 3D production • Ireland</span></div>
+<a class="whatsappFloat" href="https://wa.me/353838359614" target="_blank" rel="noopener" aria-label="Contact CADHELP.ie on WhatsApp">W</a>
+</body>
+</html>
