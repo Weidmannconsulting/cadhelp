@@ -22,3 +22,28 @@
   .menu-btn,.browse-btn,.upload-tools button,.btn,.floating-wa,.nav a{touch-action:manipulation}
   .floating-wa{transform:translateZ(0)}
 }
+
+/* Mobile layout refinement based on real iPhone viewport. */
+@media(max-width:620px){
+  .hero-grid{gap:20px;padding:26px 0 30px}
+  .hero h1{font-size:clamp(35px,10.1vw,40px);line-height:1.04;letter-spacing:-1.25px;margin:9px 0 11px}
+  .hero h2{font-size:16px;line-height:1.32;margin-bottom:9px}
+  .hero p{font-size:14px;line-height:1.48}
+  .hero-benefits{gap:10px 8px;margin-top:19px}
+  .hero-benefits div{gap:7px;font-size:11px;line-height:1.25}
+  .hero-benefits b{width:27px;font-size:21px}
+  .upload-card{padding:10px}
+  .drop-zone{padding:13px 10px}
+  .upload-icon{font-size:29px}
+  .drop-zone strong{font-size:15px}
+  .browse-btn{margin:7px 0 3px;min-height:42px}
+  .field-label{margin-top:9px}
+  .upload-card textarea{min-height:82px}
+  .privacy{margin-top:7px}
+  .floating-wa{display:none}
+}
+
+@media(max-width:380px){
+  .hero h1{font-size:34px}
+  .hero-benefits{grid-template-columns:1fr 1fr}
+}
