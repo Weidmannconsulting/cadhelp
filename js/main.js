@@ -21,9 +21,48 @@ window.addEventListener('resize',()=>{if(window.innerWidth>980)closeMenu()});
 const input=document.getElementById('fileInput');
 const browse=document.getElementById('browseBtn');
 const drop=document.getElementById('dropZone');
+const status=document.getElementById('uploadStatus');
+const send=document.getElementById('sendRequestBtn');
+const uploaded=[];
+let pending=0;
 browse?.addEventListener('click',()=>input.click());
+document.getElementById('addFileBtn')?.addEventListener('click',()=>input.click());
 ['dragenter','dragover'].forEach(evt=>drop?.addEventListener(evt,e=>{e.preventDefault();drop.classList.add('dragover')}));
 ['dragleave','drop'].forEach(evt=>drop?.addEventListener(evt,e=>{e.preventDefault();drop.classList.remove('dragover')}));
-drop?.addEventListener('drop',e=>showFiles(e.dataTransfer.files));
-input?.addEventListener('change',()=>showFiles(input.files));
-function showFiles(files){if(!files||!files.length)return;const small=drop.querySelector('small');small.textContent=`✓ ${files.length} file${files.length>1?'s':''} selected — ready to quote`;}
+drop?.addEventListener('drop',e=>uploadFiles(e.dataTransfer.files));
+input?.addEventListener('change',()=>{uploadFiles(input.files);input.value=''});
+async function uploadFiles(files){
+  if(!files?.length)return;
+  pending+=files.length;
+  send.disabled=true;
+  status.textContent=`Preparing ${files.length} file(s)…`;
+  try{
+    const {UploadClient}=await import('https://cdn.jsdelivr.net/npm/@uploadcare/upload-client@6/+esm');
+    const client=new UploadClient({publicKey:'94d2e39bed035557fe62'});
+    for(const file of files){
+      status.textContent=`Uploading ${file.name} (${uploaded.length} complete)… Keep this page open.`;
+      try{
+        const result=await client.uploadFile(file,{store:true});
+        uploaded.push({name:file.name,url:result.cdnUrl||`https://ucarecdn.com/${result.uuid}/`});
+      }catch(error){
+        status.textContent=`${file.name} failed: ${error.message||'Please try again.'}`;
+      }finally{pending--;}
+    }
+  }catch(error){
+    pending-=files.length;
+    status.textContent='Could not load the uploader. Check your connection and try again.';
+  }
+  if(!pending){
+    send.disabled=!uploaded.length;
+    if(uploaded.length)status.textContent=`${uploaded.length} file(s) uploaded. Click Send request to email the links.`;
+  }
+}
+send?.addEventListener('click',()=>{
+  if(pending||!uploaded.length)return;
+  const email=document.getElementById('clientEmail');
+  if(!email.reportValidity())return;
+  const description=document.getElementById('requestText').value.trim();
+  const body=`Client email: ${email.value.trim()}\n\nRequest:\n${description||'(No description provided)'}\n\nUploaded files:\n${uploaded.map(f=>`${f.name}: ${f.url}`).join('\n')}\n\nPlease send this email to submit your request.`;
+  window.location.href=`mailto:help@cadhelp.ie?subject=${encodeURIComponent('New CADHelp job request')}&body=${encodeURIComponent(body)}`;
+  status.textContent='Your email app should open. Please send the drafted email to complete your request.';
+});
