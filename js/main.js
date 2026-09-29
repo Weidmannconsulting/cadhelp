@@ -1,3 +1,5 @@
+import {UploadClient} from './vendor/uploadcare-client.js';
+
 const menuBtn=document.getElementById('menuBtn');
 const nav=document.getElementById('nav');
 function closeMenu(){
@@ -24,6 +26,7 @@ const drop=document.getElementById('dropZone');
 const status=document.getElementById('uploadStatus');
 const send=document.getElementById('sendRequestBtn');
 const uploaded=[];
+const client=new UploadClient({publicKey:'94d2e39bed035557fe62'});
 let pending=0;
 browse?.addEventListener('click',()=>input.click());
 document.getElementById('addFileBtn')?.addEventListener('click',()=>input.click());
@@ -35,22 +38,16 @@ async function uploadFiles(files){
   if(!files?.length)return;
   pending+=files.length;
   send.disabled=true;
-  status.textContent=`Preparing ${files.length} file(s)…`;
-  try{
-    const {UploadClient}=await import('https://cdn.jsdelivr.net/npm/@uploadcare/upload-client@6/+esm');
-    const client=new UploadClient({publicKey:'94d2e39bed035557fe62'});
-    for(const file of files){
-      status.textContent=`Uploading ${file.name} (${uploaded.length} complete)… Keep this page open.`;
+  for(const file of files){
+      status.textContent=`Uploading ${file.name}… Keep this page open.`;
       try{
-        const result=await client.uploadFile(file,{store:true});
+        const result=await client.uploadFile(file,{store:true,onProgress:({isComputable,value})=>{
+          if(isComputable)status.textContent=`Uploading ${file.name}: ${Math.round(value*100)}% — keep this page open.`;
+        }});
         uploaded.push({name:file.name,url:result.cdnUrl||`https://ucarecdn.com/${result.uuid}/`});
       }catch(error){
         status.textContent=`${file.name} failed: ${error.message||'Please try again.'}`;
       }finally{pending--;}
-    }
-  }catch(error){
-    pending-=files.length;
-    status.textContent='Could not load the uploader. Check your connection and try again.';
   }
   if(!pending){
     send.disabled=!uploaded.length;
