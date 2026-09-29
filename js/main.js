@@ -28,6 +28,7 @@ const send=document.getElementById('sendRequestBtn');
 const uploaded=[];
 const client=new UploadClient({publicKey:'94d2e39bed035557fe62'});
 let pending=0;
+let submitted=false;
 browse?.addEventListener('click',()=>input.click());
 document.getElementById('addFileBtn')?.addEventListener('click',()=>input.click());
 ['dragenter','dragover'].forEach(evt=>drop?.addEventListener(evt,e=>{e.preventDefault();drop.classList.add('dragover')}));
@@ -36,6 +37,7 @@ drop?.addEventListener('drop',e=>uploadFiles(e.dataTransfer.files));
 input?.addEventListener('change',()=>{uploadFiles(input.files);input.value=''});
 async function uploadFiles(files){
   if(!files?.length)return;
+  if(submitted){uploaded.length=0;submitted=false;send.textContent='Send request →';}
   pending+=files.length;
   send.disabled=true;
   for(const file of files){
@@ -51,15 +53,37 @@ async function uploadFiles(files){
   }
   if(!pending){
     send.disabled=!uploaded.length;
-    if(uploaded.length)status.textContent=`${uploaded.length} file(s) uploaded. Click Send request to email the links.`;
+    if(uploaded.length)status.textContent=`${uploaded.length} file(s) uploaded. Enter your email and click Send request.`;
   }
 }
-send?.addEventListener('click',()=>{
-  if(pending||!uploaded.length)return;
+send?.addEventListener('click',async()=>{
+  if(pending||!uploaded.length||submitted)return;
   const email=document.getElementById('clientEmail');
   if(!email.reportValidity())return;
   const description=document.getElementById('requestText').value.trim();
-  const body=`Client email: ${email.value.trim()}\n\nRequest:\n${description||'(No description provided)'}\n\nUploaded files:\n${uploaded.map(f=>`${f.name}: ${f.url}`).join('\n')}\n\nPlease send this email to submit your request.`;
-  window.location.href=`mailto:cadhelp@gmail.com?subject=${encodeURIComponent('New CADHelp job request')}&body=${encodeURIComponent(body)}`;
-  status.textContent='Your email app should open. Please send the drafted email to complete your request.';
+  send.disabled=true;
+  send.textContent='Sending…';
+  status.textContent='Submitting your request…';
+  const data=new FormData();
+  data.append('email',email.value.trim());
+  data.append('message',description||'(No description provided)');
+  data.append('uploaded_files',uploaded.map(f=>`${f.name}: ${f.url}`).join('\n'));
+  data.append('_subject','New CADHelp job request');
+  data.append('_replyto',email.value.trim());
+  data.append('_captcha','false');
+  data.append('_honey','');
+  try{
+    const response=await fetch('https://formsubmit.co/ajax/cadhelp@gmail.com',{method:'POST',body:data});
+    const result=await response.json();
+    if(!response.ok||result.success===false||result.success==='false'||!result.success){
+      throw new Error(result.message||'Request could not be sent.');
+    }
+    submitted=true;
+    send.textContent='Request sent ✓';
+    status.textContent='Thank you! Your request has been submitted. We’ll review your files and get back to you.';
+  }catch(error){
+    status.textContent=`Could not send your request: ${error.message||'Please try again.'} Your files are still uploaded; you can try again.`;
+    send.disabled=false;
+    send.textContent='Try sending again →';
+  }
 });
