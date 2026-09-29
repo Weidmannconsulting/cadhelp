@@ -77,3 +77,9 @@
 @media(max-width:380px){
   .hero h1{font-size:30px}
 }
+
+/* Upload request controls */
+.upload-status{font-size:11px;line-height:1.4;color:var(--ink);margin-top:8px;overflow-wrap:anywhere}
+.client-email{width:100%;border:1px solid #d5e0e9;border-radius:5px;padding:10px;font:inherit;font-size:14px}
+.upload-tools .send-btn:disabled{opacity:.48;cursor:not-allowed}
+@media(max-width:620px){.client-email{font-size:16px;min-height:44px}.upload-status{font-size:12px}}
