@@ -56,34 +56,33 @@ async function uploadFiles(files){
     if(uploaded.length)status.textContent=`${uploaded.length} file(s) uploaded. Enter your email and click Send request.`;
   }
 }
-send?.addEventListener('click',async()=>{
+send?.addEventListener('click',()=>{
   if(pending||!uploaded.length||submitted)return;
   const email=document.getElementById('clientEmail');
   if(!email.reportValidity())return;
   const description=document.getElementById('requestText').value.trim();
   send.disabled=true;
   send.textContent='Sending…';
-  status.textContent='Submitting your request…';
-  const data=new FormData();
-  data.append('email',email.value.trim());
-  data.append('message',description||'(No description provided)');
-  data.append('uploaded_files',uploaded.map(f=>`${f.name}: ${f.url}`).join('\n'));
-  data.append('_subject','New CADHelp job request');
-  data.append('_replyto',email.value.trim());
-  data.append('_captcha','false');
-  data.append('_honey','');
-  try{
-    const response=await fetch('https://formsubmit.co/ajax/cadhelp@gmail.com',{method:'POST',body:data});
-    const result=await response.json();
-    if(!response.ok||result.success===false||result.success==='false'||!result.success){
-      throw new Error(result.message||'Request could not be sent.');
-    }
-    submitted=true;
-    send.textContent='Request sent ✓';
-    status.textContent='Thank you! Your request has been submitted. We’ll review your files and get back to you.';
-  }catch(error){
-    status.textContent=`Could not send your request: ${error.message||'Please try again.'} Your files are still uploaded; you can try again.`;
-    send.disabled=false;
-    send.textContent='Try sending again →';
+  status.textContent='Opening the secure submission page…';
+  const form=document.createElement('form');
+  form.method='POST';
+  form.action='https://formsubmit.co/cadhelpie@gmail.com';
+  form.hidden=true;
+  const fields={
+    email:email.value.trim(),
+    message:description||'(No description provided)',
+    uploaded_files:uploaded.map(f=>`${f.name}: ${f.url}`).join('\n'),
+    _subject:'New CADHelp job request',
+    _replyto:email.value.trim(),
+    _captcha:'false',
+    _honey:'',
+    _next:new URL('thanks.html',window.location.href).href
+  };
+  for(const [name,value] of Object.entries(fields)){
+    const field=document.createElement('input');
+    field.type='hidden';field.name=name;field.value=value;
+    form.appendChild(field);
   }
+  document.body.appendChild(form);
+  form.submit();
 });
