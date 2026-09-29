@@ -46,7 +46,7 @@ async function uploadFiles(files){
         const result=await client.uploadFile(file,{store:true,onProgress:({isComputable,value})=>{
           if(isComputable)status.textContent=`Uploading ${file.name}: ${Math.round(value*100)}% — keep this page open.`;
         }});
-        uploaded.push({name:file.name,url:result.cdnUrl||`https://ucarecdn.com/${result.uuid}/`});
+        uploaded.push({name:file.name,url:`https://2gcy3oxnep.ucarecd.net/${result.uuid}/`});
       }catch(error){
         status.textContent=`${file.name} failed: ${error.message||'Please try again.'}`;
       }finally{pending--;}
