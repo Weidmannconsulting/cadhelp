@@ -63,6 +63,6 @@ send?.addEventListener('click',()=>{
   if(!email.reportValidity())return;
   const description=document.getElementById('requestText').value.trim();
   const body=`Client email: ${email.value.trim()}\n\nRequest:\n${description||'(No description provided)'}\n\nUploaded files:\n${uploaded.map(f=>`${f.name}: ${f.url}`).join('\n')}\n\nPlease send this email to submit your request.`;
-  window.location.href=`mailto:help@cadhelp.ie?subject=${encodeURIComponent('New CADHelp job request')}&body=${encodeURIComponent(body)}`;
+  window.location.href=`mailto:cadhelp@gmail.com?subject=${encodeURIComponent('New CADHelp job request')}&body=${encodeURIComponent(body)}`;
   status.textContent='Your email app should open. Please send the drafted email to complete your request.';
 });
