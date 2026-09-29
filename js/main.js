@@ -1,4 +1,4 @@
-import {UploadClient} from './vendor/uploadcare-client.js';
+import {UploadClient} from './uploadcare-client.js';
 
 const menuBtn=document.getElementById('menuBtn');
 const nav=document.getElementById('nav');
